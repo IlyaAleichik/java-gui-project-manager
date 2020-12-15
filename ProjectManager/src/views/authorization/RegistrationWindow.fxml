@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.authorization.RegistrationWindowController">
+   <children>
+      <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <right>
+            <BorderPane prefHeight="768.0" prefWidth="380.0" style="-fx-background-color: linear-gradient(to right top, #04091f, #00153c, #001b5a, #001f78, #002196);" BorderPane.alignment="CENTER" />
+         </right>
+         <center>
+            <Pane focusTraversable="true" nodeOrientation="LEFT_TO_RIGHT" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+               <children>
+                  <TextField fx:id="textFieldUsername" layoutX="88.0" layoutY="211.0" prefHeight="34.0" prefWidth="260.0" promptText="Ваш никнейм" style="-fx-background-radius: 0.3em;" styleClass="text-input">
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </TextField>
+                  <Label layoutX="58.0" layoutY="48.0" text="Привет">
+                     <font>
+                        <Font name="Arial" size="48.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="57.0" layoutY="109.0" prefHeight="47.0" prefWidth="469.0" text="Добро пожаловать. Давайте зарегистрируем вас!" wrapText="true">
+                     <font>
+                        <Font name="Arial" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="89.0" layoutY="182.0" prefHeight="26.0" prefWidth="469.0" text="Уникальное имя (никнейм)*" wrapText="true">
+                     <font>
+                        <Font name="Arial Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="textFieldName" layoutX="89.0" layoutY="454.0" prefHeight="34.0" prefWidth="260.0" promptText="Иван" style="-fx-background-radius: 0.3em;" styleClass="text-input">
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </TextField>
+                  <Label layoutX="90.0" layoutY="425.0" prefHeight="26.0" prefWidth="469.0" text="Имя" wrapText="true">
+                     <font>
+                        <Font name="Arial Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="textFieldSurname" layoutX="89.0" layoutY="531.0" prefHeight="34.0" prefWidth="260.0" promptText="Иванов" style="-fx-background-radius: 0.3em;" styleClass="text-input">
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </TextField>
+                  <Label layoutX="90.0" layoutY="502.0" prefHeight="26.0" prefWidth="469.0" text="Фамилия" wrapText="true">
+                     <font>
+                        <Font name="Arial Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="textFieldPatronymic" layoutX="89.0" layoutY="608.0" prefHeight="34.0" prefWidth="260.0" promptText="Иванович" style="-fx-background-radius: 0.3em;" styleClass="text-input">
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </TextField>
+                  <Label layoutX="90.0" layoutY="579.0" prefHeight="26.0" prefWidth="469.0" text="Отчество" wrapText="true">
+                     <font>
+                        <Font name="Arial Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="textFieldPassword" layoutX="89.0" layoutY="289.0" prefHeight="34.0" prefWidth="260.0" promptText="********" style="-fx-background-radius: 0.3em;" styleClass="text-input">
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </TextField>
+                  <Label layoutX="90.0" layoutY="260.0" prefHeight="26.0" prefWidth="469.0" text="Пароль*" wrapText="true">
+                     <font>
+                        <Font name="Arial Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="textFieldEmail" layoutX="443.0" layoutY="454.0" prefHeight="34.0" prefWidth="260.0" promptText="project.manager@mail.gov" style="-fx-background-radius: 0.3em;" styleClass="text-input">
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </TextField>
+                  <Label layoutX="444.0" layoutY="425.0" prefHeight="26.0" prefWidth="469.0" text="E-mail*" wrapText="true">
+                     <font>
+                        <Font name="Arial Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="textFieldPhone" layoutX="444.0" layoutY="531.0" prefHeight="34.0" prefWidth="260.0" promptText="+375 XX-XXX-XX-XX" style="-fx-background-radius: 0.3em;" styleClass="text-input">
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </TextField>
+                  <Label layoutX="445.0" layoutY="502.0" prefHeight="26.0" prefWidth="469.0" text="Номерь телефона*" wrapText="true">
+                     <font>
+                        <Font name="Arial Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="421.0" layoutY="691.0" prefHeight="29.0" prefWidth="258.0" text="* - отмечены обязательные поля" wrapText="true" />
+                  <Separator layoutX="57.0" layoutY="158.0" prefHeight="2.0" prefWidth="709.0" />
+                  <Separator layoutX="57.0" layoutY="399.0" prefHeight="2.0" prefWidth="709.0" />
+                  <Button fx:id="buttonSignUp" layoutX="88.0" layoutY="685.0" mnemonicParsing="false" opacity="0.83" prefHeight="35.0" prefWidth="205.0" style="-fx-background-color: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);" text="Зарегистрироваться" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="15.0" />
+                     </font>
+                  </Button>
+                  <CheckBox fx:id="checkBoxAcceptPrivacy" layoutX="421.0" layoutY="673.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="333.0" text="Я согласе(на)н с условиями предоставления услуг и политикой конфиденциальности" wrapText="true" />
+                  <Label layoutX="57.0" layoutY="351.0" prefHeight="48.0" prefWidth="469.0" text="Личная информация" wrapText="true">
+                     <font>
+                        <Font name="Arial" size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
