@@ -9,7 +9,7 @@ import javafx.stage.StageStyle;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.paint.Color;
-;
+
 
 public class ProjectManagerClient extends Application {
     Parent root;
@@ -20,7 +20,6 @@ public class ProjectManagerClient extends Application {
         try {
 
             root = FXMLLoader.load(getClass().getResource("/views/authorization/LoginWindow.fxml"));
-
             root.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {

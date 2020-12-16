@@ -16,7 +16,7 @@ import models.client.Client;
 
 public class LoginWindowController {
     Parent root;
-    Client client;
+    //Client client;
     @FXML
     private ResourceBundle resources;
 
@@ -38,15 +38,21 @@ public class LoginWindowController {
     @FXML
     void initialize() {
 
-        client = new Client("127.0.0.1", "3030");
+       // client = new Client("127.0.0.1", "3030");
 
         signInButton.setOnAction(event -> {
-            client.sendMessage("ok");
             try {
-                System.out.println(client.readMessage());
+                signInButton.getScene().getWindow().hide();
+                root = FXMLLoader.load(getClass().getResource("/views/dashboard/DashboardWindow.fxml"));
+                Scene scene = new Scene(root);
+                Stage primaryStage = new Stage();
+                primaryStage.setTitle("AICGTrade Projects Manager");
+                primaryStage.setScene(scene);
+                primaryStage.showAndWait();
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
         });
 
         signUpButton.setOnAction(event -> {
