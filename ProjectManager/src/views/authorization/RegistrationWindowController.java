@@ -1,17 +1,15 @@
 package views.authorization;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import database.Factory;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import models.client.Client;
+import models.User;
+
 
 public class RegistrationWindowController {
 
@@ -50,7 +48,11 @@ public class RegistrationWindowController {
 
     @FXML
     void initialize() {
+        Factory connection = new Factory();
+
         buttonSignUp.setOnAction(event -> {
+            User user = new User(textFieldName.getText(),textFieldSurname.getText(),textFieldPatronymic.getText(),textFieldPassword.getText(),textFieldPhone.getText(),textFieldEmail.getText(),textFieldUsername.getText());
+            connection.getUsers().insertUser(user);
             Stage stage = (Stage) buttonSignUp.getScene().getWindow();
             stage.close();
         });
