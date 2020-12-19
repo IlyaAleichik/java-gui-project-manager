@@ -38,12 +38,12 @@
             <Font name="Arial Bold" size="47.0" />
          </font>
       </Label>
-      <TextField fx:id="emailField" layoutX="312.0" layoutY="155.0" prefHeight="38.0" prefWidth="245.0" promptText="Email" style="-fx-background-color: #242424;" AnchorPane.leftAnchor="312.0" AnchorPane.rightAnchor="33.0">
+      <TextField fx:id="textField" layoutX="312.0" layoutY="155.0" prefHeight="38.0" prefWidth="245.0" promptText="Email" style="-fx-background-color: #242424; -fx-prompt-text-fill: white;" AnchorPane.leftAnchor="312.0" AnchorPane.rightAnchor="33.0">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </TextField>
-      <TextField fx:id="passwordField" layoutX="312.0" layoutY="212.0" prefHeight="38.0" prefWidth="245.0" promptText="Password" style="-fx-background-color: #242424;" AnchorPane.leftAnchor="312.0" AnchorPane.rightAnchor="33.0">
+      <TextField fx:id="passwordField" layoutX="312.0" layoutY="212.0" prefHeight="38.0" prefWidth="245.0" promptText="Password" style="-fx-background-color: #242424; -fx-prompt-text-fill: white;" AnchorPane.leftAnchor="312.0" AnchorPane.rightAnchor="33.0">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>

@@ -3,15 +3,18 @@ package database.users;
 import database.PostgresDriver;
 import models.User;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class SQLUsers implements  IUsers {
 
     private static SQLUsers instance;
     private PostgresDriver connection;
+    private ResultSet resultSet;
 
     private SQLUsers(){
-        connection = PostgresDriver.getInstance();
+        this.connection = PostgresDriver.getInstance();
     }
-
     public static synchronized SQLUsers getInstance() {
         if (instance == null) {
             instance = new SQLUsers();
@@ -20,7 +23,10 @@ public class SQLUsers implements  IUsers {
     }
 
     @Override
-    public void selectUser(User obj){}
+    public ResultSet selectUser(User obj) throws SQLException {
+        String str = "SELECT * FROM users WHERE (user_nickname = '"+ obj.getUserNickname() +"' OR user_email = '" + obj.getUserEmail() +"') AND user_password = '"+ obj.getUserPassword() +"'";
+       return this.resultSet = connection.getResultSet(str);
+    }
 
     @Override
     public void insertUser(User obj){

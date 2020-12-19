@@ -1,5 +1,7 @@
 package database;
 
+import models.User;
+
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -8,6 +10,7 @@ public class PostgresDriver {
     private static PostgresDriver instance;
     protected Connection connection;
     protected Statement statement;
+    private ResultSet resultSet;
 
     private static final String USER = "postgres";
     private static final String PASS = "1";
@@ -20,8 +23,11 @@ public class PostgresDriver {
     public static synchronized PostgresDriver getInstance() {
         if (instance == null) {
             instance = new PostgresDriver();
-        }
-        return instance;
+        }return instance;
+    }
+
+    public ResultSet getResultSet(String str) throws SQLException {
+        return this.resultSet = statement.executeQuery(str);
     }
 
     public void getConnection(){

@@ -2,9 +2,15 @@ package views.dashboard;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+
+import database.Factory;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -12,14 +18,29 @@ import javafx.geometry.Insets;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
 import models.Project;
+import models.User;
+import javafx.scene.control.Label;
 
-public class DashboardWindowController implements Initializable {
+import javax.xml.transform.Result;
+
+public class DashboardWindowController {
+    private int t_user_id;
+    private String t_user_name;
+    private int t_user_role;
+
+    private ObservableList<Project> projectsList = FXCollections.observableArrayList();
+   // private ObservableList<Task> tasks = FXCollections.observableArrayList();
+   // private ObservableList<Risk> risks = FXCollections.observableArrayList();
 
     @FXML
     private ResourceBundle resources;
 
     @FXML
     private URL location;
+
+
+    @FXML
+    private Label usernameLabel;
 
     @FXML
     private HBox dashboardButton;
@@ -54,29 +75,9 @@ public class DashboardWindowController implements Initializable {
     @FXML
     private GridPane gridProjectPane;
 
-    private List<Project> projects = new ArrayList<>();
+    @FXML
+    public void initialize() {
 
-    private List<Project> getData() {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate localDate = LocalDate.now();
-
-        List<Project> projects = new ArrayList<>();
-        Project project;
-
-        for (int i = 0; i < 10; i++){
-            project = new Project();
-            project.setProject_name("Darktable");
-            project.setImgSrc("../img/darktable_icon.png");
-            project.setProject_date_creation(dtf.format(localDate));
-            project.setProject_description("Project fot ");
-            projects.add(project);
-        }
-        return projects;
-    }
-
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
 
         dashboardButton.setOnMouseClicked(event -> {
             pageDash.toFront();
@@ -89,18 +90,29 @@ public class DashboardWindowController implements Initializable {
             pageReports.toFront();
         });
 
-        projects.addAll(getData());
-        int column = 0;
-        int row = 1;
+    }
 
+    public void initDataUser(User obj){
+        this.t_user_id = obj.getUserId();
+        this.t_user_name = obj.getUserNickname();
+        this.t_user_role = obj.getUserRole();
+        usernameLabel.setText(t_user_name);
+        initData();
+    }
+
+    private void initData(){
         try {
-            for (int i = 0; i < projects.size(); i++) {
+            int column = 0;
+            int row = 1;
+
+            projectsList.addAll(getData());
+            for (int i = 0; i < projectsList.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/views/dashboard/ItemProject.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
 
                 ItemProjectController itemProjectController = fxmlLoader.getController();
-                itemProjectController.setData(projects.get(i));
+                itemProjectController.setData(projectsList.get(i));
 
                 if (column == 4) {
                     column = 0;
@@ -120,8 +132,35 @@ public class DashboardWindowController implements Initializable {
 
                 GridPane.setMargin(anchorPane, new Insets(10));
             }
-        } catch (IOException e) {
+        } catch (IOException | SQLException e) {
             e.printStackTrace();
         }
     }
+    private ObservableList<Project> getData() throws SQLException {
+
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate localDate = LocalDate.now();
+
+        Factory factory = new Factory();
+        ObservableList<Project> projectsList = FXCollections.observableArrayList();
+        Project project = new Project();
+        ResultSet resultSet = factory.getProject().selectProject(project,t_user_id);
+
+        while (resultSet.next()){
+            projectsList.add(new Project(
+                    resultSet.getInt("project_id"),
+                    resultSet.getDate("project_date_creation"),
+                    resultSet.getTime("project_time_creation"),
+                    resultSet.getDate("project_term_delivery"),
+                    resultSet.getDouble("project_cost_delivery"),
+                    resultSet.getString("project_name"),
+                    resultSet.getString("project_description"),
+                    resultSet.getInt("project_user_id")
+            ));
+        };
+           // project.setProject_date_creation(dtf.format(localDate));
+
+        return projectsList;
+    }
+
 }

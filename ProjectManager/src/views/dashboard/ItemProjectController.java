@@ -44,7 +44,7 @@ public class ItemProjectController {
         this.project = project;
         nameProjectLabel.setText(project.getProject_name());
         descriptionProjectLabel.setText(project.getProject_description());
-        dateCreateProjectLabel.setText(project.getProject_date_creation());
+        dateCreateProjectLabel.setText(project.getProject_date_creation().toString());
         imgProjectImageView.setImage(image);
     }
 }

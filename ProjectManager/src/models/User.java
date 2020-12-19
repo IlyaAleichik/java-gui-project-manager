@@ -1,15 +1,30 @@
 package models;
 
 public class User {
+
+    private int UserId;
     private String UserName;
     private String UserSurname;
     private String UserPatronymic;
     private String UserPassword;
+    private String UserImg;
     private String UserPhone;
     private String UserEmail;
     private String UserNickname;
-    private String UserRole;
+    private int UserRole;
 
+
+    public User(){}
+    public User(int user_id, String user_name, String user_surname, String user_patronymic, String user_password, String user_phone, String user_email, String user_nickname, int user_role){
+        UserId = user_id;
+        UserName = user_name;
+        UserSurname = user_surname;
+        UserPatronymic = user_patronymic;
+        UserPassword = user_password;
+        UserPhone = user_phone;
+        UserEmail = user_email;
+        UserNickname = user_nickname;
+    }
     public User(String userName, String userSurname, String userPatronymic, String userPassword, String userPhone, String userEmail, String userNickname) {
         UserName = userName;
         UserSurname = userSurname;
@@ -19,6 +34,10 @@ public class User {
         UserEmail = userEmail;
         UserNickname = userNickname;
     }
+
+    public int getUserId() { return UserId;}
+
+    public void setUserId(int userId) { UserId = userId;}
 
     public String getUserName() {
         return UserName;
@@ -43,6 +62,10 @@ public class User {
     public void setUserPatronymic(String userPatronymic) {
         UserPatronymic = userPatronymic;
     }
+
+    public String getUserImg() { return UserImg; }
+
+    public void setUserImg(String userImg) { UserImg = userImg; }
 
     public String getUserPassword() {
         return UserPassword;
@@ -76,12 +99,10 @@ public class User {
         UserNickname = userNickname;
     }
 
-    public String getUserRole() {
+    public int getUserRole() {
         return UserRole;
     }
 
-    public void setUserRole(String userRole) {
-        UserRole = userRole;
-    }
+    public void setUserRole(int userRole) { UserRole = userRole; }
 
 }

@@ -19,10 +19,17 @@ SELECT * FROM tasks;
 SELECT * FROM users;
 
 
+SELECT * FROM users WHERE (user_nickname = 'aicgtrade' OR user_email = '') AND user_password = 'vdfv';
 
 
+SELECT * FROM users WHERE (user_nickname = 'aicgtrade' OR user_email = '') AND user_password = 'Mic20207';
 
 
+SELECT * FROM projects_view WHERE project_user_id = '2'
+
+SELECT * FROM projects WHERE project_user_id = '2'
+
+SELECT COUNT(*) FROM tasks
 
 
 
