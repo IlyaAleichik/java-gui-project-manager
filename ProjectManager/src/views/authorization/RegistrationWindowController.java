@@ -55,32 +55,13 @@ public class RegistrationWindowController {
         checkBoxAcceptPrivacy.setOnAction(event -> chekSelected());
 
         buttonSignUp.setOnAction(event -> {
-            if(textFieldUsername.getText().equals("")){
+            if (textFieldUsername.getText().isEmpty() ||textFieldName.getText().isEmpty() || textFieldSurname.getText().isEmpty() || textFieldPatronymic.getText().isEmpty() || textFieldPassword.getText().isEmpty() || textFieldEmail.getText().isEmpty() || textFieldPhone.getText().isEmpty()) {
                 dialogAlert(typeError, "Not input Username");
-                if(textFieldName.getText().equals("")){
-                    dialogAlert(typeError, "Not input Name");
-                    if(textFieldSurname.getText().equals("")){
-                        dialogAlert(typeError, "Not input Surname");
-                        if(textFieldPatronymic.getText().equals("")){
-                            dialogAlert(typeError, "Not input Patronymic");
-                            if(textFieldPassword.getText().equals("")){
-                                dialogAlert(typeError, "Not input Paswword");
-                                if(textFieldEmail.getText().equals("")){
-                                    dialogAlert(typeError, "Not input Email");
-                                    if(textFieldPhone.getText().equals("")){
-                                        dialogAlert(typeError, "Not input Phone");
-                                    }
-                                    else {
-                                        User user = new User(textFieldName.getText(),textFieldSurname.getText(),textFieldPatronymic.getText(),textFieldPassword.getText(),textFieldPhone.getText(),textFieldEmail.getText(),textFieldUsername.getText());
-                                        connection.getUsers().insertUser(user);
-                                        Stage stage = (Stage) buttonSignUp.getScene().getWindow();
-                                        stage.close();
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+            } else {
+                User user = new User(textFieldName.getText(),textFieldSurname.getText(),textFieldPatronymic.getText(),textFieldPassword.getText(),textFieldPhone.getText(),textFieldEmail.getText(),textFieldUsername.getText());
+                connection.getUsers().insertUser(user);
+                Stage stage = (Stage) buttonSignUp.getScene().getWindow();
+                stage.close();
             }
         });
     }

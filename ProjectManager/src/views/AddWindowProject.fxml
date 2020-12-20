@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.AddWindowProjectController">
+   <children>
+      <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <left>
+            <VBox BorderPane.alignment="CENTER_LEFT">
+               <children>
+                  <HBox alignment="CENTER_LEFT" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Label text="Сведения о проекте " wrapText="true" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font name="Arial Bold" size="27.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="30.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Label prefHeight="47.0" prefWidth="250.0" text="Название проекта" wrapText="true">
+                           <font>
+                              <Font name="Arial" size="15.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="textFieldNameProject" prefHeight="34.0" prefWidth="260.0" promptText="Название вашего проекта " style="-fx-background-radius: 0.3em;" styleClass="text-input">
+                           <padding>
+                              <Insets left="15.0" />
+                           </padding>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER">
+                     <children>
+                        <Label prefHeight="47.0" prefWidth="250.0" text="Срок внедрения" wrapText="true">
+                           <font>
+                              <Font name="Arial" size="15.0" />
+                           </font>
+                        </Label>
+                        <DatePicker fx:id="dataPickerProject" prefHeight="34.0" prefWidth="260.0" promptText="Дата ввода в эксплуатацию" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER">
+                     <children>
+                        <Label prefHeight="47.0" prefWidth="250.0" text="Устоновите стоимость проекта" wrapText="true">
+                           <font>
+                              <Font name="Arial" size="15.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="textFieldCostProject" prefHeight="34.0" prefWidth="260.0" promptText="\$" style="-fx-background-radius: 0.3em;" styleClass="text-input">
+                           <padding>
+                              <Insets left="15.0" />
+                           </padding>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT">
+                     <children>
+                        <Label prefHeight="47.0" prefWidth="250.0" text="Описание" wrapText="true" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font name="Arial" size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <TextArea fx:id="textAreaDeskProject" prefHeight="200.0" prefWidth="200.0" promptText="Краткое описание " />
+                  <HBox alignment="CENTER" />
+                  <HBox alignment="CENTER" />
+                  <HBox alignment="CENTER" />
+                  <HBox alignment="CENTER" />
+                  <HBox alignment="CENTER" />
+                  <HBox alignment="CENTER" />
+                  <HBox alignment="CENTER">
+                     <VBox.margin>
+                        <Insets bottom="50.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Button fx:id="buttonCleanProject" mnemonicParsing="false" onMouseClicked="#cleanAddProject" prefHeight="34.0" prefWidth="133.0" text="Очистить">
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="buttonAboutProject" mnemonicParsing="false" onMouseClicked="#aboutAddProject" prefHeight="34.0" prefWidth="133.0" text="Отмена">
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="buttonAceptProject" mnemonicParsing="false" onMouseClicked="#acceptAddProject" prefHeight="34.0" prefWidth="133.0" text="Применить" />
+                     </children>
+                  </HBox>
+               </children>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+               <padding>
+                  <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+               </padding>
+            </VBox>
+         </left>
+      </BorderPane>
+   </children>
+</AnchorPane>

@@ -13,7 +13,6 @@ public class User {
     private String UserNickname;
     private int UserRole;
 
-
     public User(){}
     public User(int user_id, String user_name, String user_surname, String user_patronymic, String user_password, String user_phone, String user_email, String user_nickname, int user_role){
         UserId = user_id;

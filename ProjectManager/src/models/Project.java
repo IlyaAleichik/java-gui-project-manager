@@ -7,7 +7,7 @@ public class Project {
     private int project_id;
     private Date project_date_creation;
     private Time project_time_creation;
-    private Date project_term_delivery;
+    private String project_term_delivery;
     private double project_cost_delivery;
     private String project_name;
     private String project_description;
@@ -15,7 +15,14 @@ public class Project {
 
 
     public Project(){}
-    public Project(int project_id, Date project_date_creation, Time project_time_creation, Date project_term_delivery, double project_cost_delivery, String project_name, String project_description, int project_user_id) {
+    public Project(String project_term_delivery, double project_cost_delivery, String project_name, String project_description, int project_user_id){
+        this.project_term_delivery = project_term_delivery;
+        this.project_cost_delivery = project_cost_delivery;
+        this.project_name = project_name;
+        this.project_description = project_description;
+        this.project_user_id = project_user_id;
+    }
+    public Project(int project_id, Date project_date_creation, Time project_time_creation, String project_term_delivery, double project_cost_delivery, String project_name, String project_description, int project_user_id) {
         this.project_id = project_id;
         this.project_date_creation = project_date_creation;
         this.project_time_creation = project_time_creation;
@@ -24,7 +31,6 @@ public class Project {
         this.project_name = project_name;
         this.project_description = project_description;
         this.project_user_id = project_user_id;
-
     }
 
     public int getProject_id() {
@@ -51,11 +57,11 @@ public class Project {
         this.project_time_creation = project_time_creation;
     }
 
-    public Date getProject_term_delivery() {
+    public String getProject_term_delivery() {
         return project_term_delivery;
     }
 
-    public void setProject_term_delivery(Date project_term_delivery) {
+    public void setProject_term_delivery(String project_term_delivery) {
         this.project_term_delivery = project_term_delivery;
     }
 
