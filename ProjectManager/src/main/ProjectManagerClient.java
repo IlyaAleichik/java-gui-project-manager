@@ -17,7 +17,7 @@ public class ProjectManagerClient extends Application {
    private double yOffset = 0;
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage){
         Parent root;
         try {
 

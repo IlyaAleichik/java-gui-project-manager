@@ -1,5 +1,6 @@
 package database;
 
+import database.projects.SQLActivity;
 import database.projects.SQLProject;
 import database.risks.SQLRisk;
 import database.tasks.SQLTask;
@@ -13,4 +14,5 @@ public class Factory extends AbstractFactory{
     public SQLProject getProject() { return SQLProject.getInstance(); }
     public SQLTask getTask() { return SQLTask.getInstance(); }
     public SQLRisk getRisk() { return SQLRisk.getInstance(); }
+    public SQLActivity getActivity() { return SQLActivity.getInstance(); }
 }

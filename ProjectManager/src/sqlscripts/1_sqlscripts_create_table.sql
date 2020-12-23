@@ -1,5 +1,16 @@
 --DROP-TABLE-------------------------------------------------------
+DROP VIEW IF EXISTS projects_view; 
+DROP VIEW IF EXISTS tasks_view;
+DROP VIEW IF EXISTS risks_view;
+DROP VIEW IF EXISTS activity_log_view;
+
+
+
 DROP TABLE IF EXISTS activity,availability_risk,currencies,priority_tasks,projects,risks,roles,states_tasks,tasks,users;
+
+
+
+
 
 
 --CATEGORY------------------------------------------------
@@ -60,14 +71,14 @@ CREATE TABLE projects(
 	PROJECT_ID SERIAL PRIMARY KEY,
 	PROJECT_DATE_CREATION DATE NOT NULL,
 	PROJECT_TIME_CREATION TIME NOT NULL,
-	PROJECT_TERM_DELIVERY TIMESTAMP WITHOUT TIME ZONE,
+	PROJECT_TERM_DELIVERY DATE,
 	PROJECT_COST_DELIVERY NUMERIC,
 	PROJECT_NAME CHARACTER VARYING( 255 ) NOT NULL,
 	PROJECT_DESCRIPTION CHARACTER VARYING( 255 ),
 	
 	--FK-----------------------------------
 	PROJECT_CURRENCY_ID INTEGER REFERENCES currencies(CURRENCY_ID),
-	PROJECT_USER_ID INTEGER REFERENCES users(USER_ID) NOT NULL
+	PROJECT_USER_ID INTEGER REFERENCES users(USER_ID) NOT NULL 
 );
 
 CREATE TABLE risks(

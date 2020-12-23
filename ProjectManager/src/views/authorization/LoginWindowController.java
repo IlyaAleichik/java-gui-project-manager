@@ -1,10 +1,8 @@
 package views.authorization;
 
 import java.io.IOException;
-import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ResourceBundle;
 import database.Factory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,16 +17,8 @@ import javafx.stage.Stage;
 import models.User;
 import views.dashboard.DashboardWindowController;
 
+
 public class LoginWindowController {
-
-    ObservableList<User> userList = FXCollections.observableArrayList();
-    private FXMLLoader loader;
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
 
     @FXML
     private Button signUpButton;
@@ -42,14 +32,15 @@ public class LoginWindowController {
     @FXML
     private Button signInButton;
 
+
+    private FXMLLoader loader;
+    ObservableList<User> userList = FXCollections.observableArrayList();
+
     @FXML
     void initialize() {
-
         signInButton.setOnAction(event -> {
-
             String loginText = textField.getText().trim();
             String loginPassword = passwordField.getText().trim();
-
             if (!loginText.equals("") && !loginPassword.equals((""))){
                 try {
                     loginUser(loginText,loginPassword);
@@ -87,7 +78,6 @@ public class LoginWindowController {
     }
 
     private void loginUser(String loginText,String loginPassword) throws SQLException, IOException {
-
         Factory factory = new Factory();
         User user = new User();
 
@@ -145,6 +135,5 @@ public class LoginWindowController {
         stage.show();
         signInButton.getScene().getWindow().hide();
     }
-
 
 }

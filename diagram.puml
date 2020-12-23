@@ -1,0 +1,347 @@
+@startuml
+
+
+class models.Project {
+- int project_id
+- Date project_date_creation
+- Time project_time_creation
+- String project_term_delivery
+- String project_cost_delivery
+- String project_name
+- int project_currency_id
+- String project_description
+- int project_user_id
++ int getProject_id()
++ void setProject_id(int)
++ Date getProject_date_creation()
++ void setProject_date_creation(Date)
++ Time getProject_time_creation()
++ void setProject_time_creation(Time)
++ String getProject_term_delivery()
++ void setProject_term_delivery(String)
++ String getProject_cost_delivery()
++ void setProject_cost_delivery(String)
++ String getProject_name()
++ void setProject_name(String)
++ int getProject_currency_id()
++ void setProject_currency_id(int)
++ String getProject_description()
++ void setProject_description(String)
++ int getProject_user_id()
++ void setProject_user_id(int)
++ String toString()
+}
+class models.ActivityLog {
+~ String log_time
+~ String log_date
+~ String log_user_ip
+~ String user_email
+~ String user_nickname
+~ String role_name
++ String getLog_time()
++ void setLog_time(String)
++ String getLog_date()
++ void setLog_date(String)
++ String getLog_user_ip()
++ void setLog_user_ip(String)
++ String getUser_email()
++ void setUser_email(String)
++ String getUser_nickname()
++ void setUser_nickname(String)
++ String getRole_name()
++ void setRole_name(String)
+}
+class models.AvaibilityRisk {
+- int id_avaibilyty
+- String name_avaibilyty
++ int getId_avaibilyty()
++ void setId_avaibilyty(int)
++ String getName_avaibilyty()
++ void setName_avaibilyty(String)
++ String toString()
+}
+class models.Risk {
+- int risk_id
+- String risk_name
+- String risk_loss_income
+- String risk_loss_time_inday
+- String project_name
+- String availability_name
+- int project_id
+- int project_user_id
+- int risk_avaibility_id
++ int getRisk_id()
++ void setRisk_id(int)
++ String getRisk_name()
++ void setRisk_name(String)
++ String getRisk_loss_income()
++ void setRisk_loss_income(String)
++ String getRisk_loss_time_inday()
++ void setRisk_loss_time_inday(String)
++ String getProject_name()
++ void setProject_name(String)
++ String getAvailability_name()
++ void setAvailability_name(String)
++ int getProject_id()
++ void setProject_id(int)
++ int getProject_user_id()
++ void setProject_user_id(int)
++ int getRisk_avaibility_id()
++ void setRisk_avaibility_id(int)
+}
+class models.client.Client {
+- Socket clientSocket
+- ObjectOutputStream outStream
+- ObjectInputStream inStream
+- String message
++ void sendMessage(String)
++ void sendObject(Object)
++ String readMessage()
++ Object readObject()
++ void close()
+}
+class models.StateTask {
+~ int state_id
+~ String state_name
++ int getState_id()
++ String getState_name()
++ void setState_id(int)
++ void setState_name(String)
++ String toString()
+}
+class models.User {
+- int UserId
+- String UserName
+- String UserSurname
+- String UserPatronymic
+- String UserPassword
+- String UserImg
+- String UserPhone
+- String UserEmail
+- String UserNickname
+- int UserRole
++ int getUserId()
++ void setUserId(int)
++ String getUserName()
++ void setUserName(String)
++ String getUserSurname()
++ void setUserSurname(String)
++ String getUserPatronymic()
++ void setUserPatronymic(String)
++ String getUserImg()
++ void setUserImg(String)
++ String getUserPassword()
++ void setUserPassword(String)
++ String getUserPhone()
++ void setUserPhone(String)
++ String getUserEmail()
++ void setUserEmail(String)
++ String getUserNickname()
++ void setUserNickname(String)
++ int getUserRole()
++ void setUserRole(int)
+}
+class models.PriorityTask {
+~ int priority_id
+~ String priority_name
++ int getPriority_id()
++ void setPriority_id(int)
++ String getPriority_name()
++ void setPriority_name(String)
++ String toString()
+}
+class models.Report {
+- String nameReport
+- String dateCreationReport
++ String getNameReport()
++ void setNameReport(String)
++ String getDateCreationReport()
++ void setDateCreationReport(String)
+}
+
+class models.Task {
+- int task_id
+- String task_name
+- String task_note
+- String state_name
+- String priority_name
+- String project_name
+- int state_id
+- int priority_id
+- int project_user_id
+- int project_id
++ int getTask_id()
++ void setTask_id(int)
++ String getTask_name()
++ void setTask_name(String)
++ String getTask_note()
++ void setTask_note(String)
++ String getState_name()
++ void setState_name(String)
++ String getPriority_name()
++ void setPriority_name(String)
++ String getProject_name()
++ void setProject_name(String)
++ int getState_id()
++ void setState_id(int)
++ int getPriority_id()
++ void setPriority_id(int)
++ int getProject_user_id()
++ void setProject_user_id(int)
++ int getProject_id()
++ void setProject_id(int)
+}
+
+
+class poi.WordWriter {
+- ObservableList<Project> projectsList
+- ObservableList<Task> tasksList
+- ObservableList<Risk> risksList
++ void createWordReport()
+- void dialogAlert(String)
+- {static} CTP createFooterModel(String)
+- {static} CTP createHeaderModel(String)
+}
+
+class main.ProjectManagerClient {
+- double xOffset
+- double yOffset
++ void start(Stage)
++ {static} void main(String[])
+}
+
+
+
+javafx.application.Application <|-- main.ProjectManagerClient
+javafx.fxml.Initializable <|.. views.dashboard.DashboardWindowController
+
+@enduml
+
+
+
+abstract class database.AbstractFactory {
++ {abstract}SQLUsers getUsers()
++ {abstract}SQLProject getProject()
++ {abstract}SQLTask getTask()
++ {abstract}SQLRisk getRisk()
++ {abstract}SQLActivity getActivity()
+}
+interface database.users.IUsers {
++ ResultSet selectUser(User)
++ void insertUser(User)
++ void updateUser(User)
++ void deleteUser(User)
++ void deleteAllUser(User)
+}
+interface database.risks.IRisk {
++ ResultSet selectAvailabilityRisk()
++ ResultSet selectRisk(Risk)
++ void insertRisk(Risk)
++ void updateRisk(Risk)
++ void deleteRisk(Risk)
+}
+interface database.tasks.ITask {
++ ResultSet selectStateTask()
++ ResultSet selectPriorityTask()
++ ResultSet selectTask(Task)
++ void insertTask(Task)
++ void updateTask(Task)
++ void deleteTask(Task)
+}
+interface database.projects.IProject {
++ ResultSet selectProject(Project,int)
++ void insertProject(Project)
++ void updateProject(Project)
++ void deleteProject(Project)
+}
+interface database.activity.IActivity {
++ ResultSet selectActivity(String)
++ void insertActivity(int)
+}
+
+
+
+class database.projects.SQLActivity {
+- {static} SQLActivity instance
+- PostgresDriver connection
+- ResultSet resultSet
++ {static} SQLActivity getInstance()
++ ResultSet selectActivity(String)
++ void insertActivity(int)
+}
+class database.PostgresDriver {
+- {static} PostgresDriver instance
+# Connection connection
+# Statement statement
+- ResultSet resultSet
+- {static} String USER
+- {static} String PASS
+- {static} String DB_URL
++ {static} PostgresDriver getInstance()
++ ResultSet getResultSet(String)
++ void getConnection()
++ void execute(String)
++ void close()
+}
+class database.risks.SQLRisk {
+- {static} SQLRisk instance
+- PostgresDriver connection
+- ResultSet resultSet
++ {static} SQLRisk getInstance()
++ ResultSet selectAvailabilityRisk()
++ ResultSet selectRisk(Risk)
++ void insertRisk(Risk)
++ void updateRisk(Risk)
++ void deleteRisk(Risk)
+}
+
+class database.users.SQLUsers {
+- {static} SQLUsers instance
+- PostgresDriver connection
+- ResultSet resultSet
++ {static} SQLUsers getInstance()
++ ResultSet selectUser(User)
++ void insertUser(User)
++ void updateUser(User)
++ void deleteUser(User)
++ void deleteAllUser(User)
+}
+
+class database.tasks.SQLTask {
+- {static} SQLTask instance
+- PostgresDriver connection
+- ResultSet resultSet
++ {static} SQLTask getInstance()
++ ResultSet selectStateTask()
++ ResultSet selectPriorityTask()
++ ResultSet selectTask(Task)
++ void insertTask(Task)
++ void updateTask(Task)
++ void deleteTask(Task)
+}
+class database.Factory {
++ SQLUsers getUsers()
++ SQLProject getProject()
++ SQLTask getTask()
++ SQLRisk getRisk()
++ SQLActivity getActivity()
+}
+class database.projects.SQLProject {
+- {static} SQLProject instance
+- PostgresDriver connection
+- ResultSet resultSet
++ {static} SQLProject getInstance()
++ ResultSet selectProject(Project,int)
++ void insertProject(Project)
++ void updateProject(Project)
++ void deleteProject(Project)
+}
+
+database.AbstractFactory <|-- database.Factory
+database.projects.IProject <|.. database.projects.SQLProject
+database.users.IUsers <|.. database.users.SQLUsers
+database.risks.IRisk <|.. database.risks.SQLRisk
+database.activity.IActivity <|.. database.projects.SQLActivity
+database.tasks.ITask <|.. database.tasks.SQLTask
+
+

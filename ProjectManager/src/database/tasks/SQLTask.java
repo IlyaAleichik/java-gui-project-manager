@@ -25,33 +25,38 @@ public class SQLTask implements ITask {
     }
 
     @Override
+    public ResultSet selectStateTask() throws SQLException {
+        String str = "SELECT * FROM states_tasks";
+        return  resultSet = connection.getResultSet(str);
+    }
+
+    @Override
+    public ResultSet selectPriorityTask() throws SQLException {
+        String str = "SELECT * FROM priority_tasks";
+        return  resultSet = connection.getResultSet(str);
+    }
+
+    @Override
     public ResultSet selectTask(Task obj) throws SQLException {
-        String str = "SELECT task_id,\n" +
-                "task_name,\n" +
-                "task_note,\n" +
-                "states_tasks.state_name,\n" +
-                "priority_tasks.prioroty_name,\n" +
-                "projects.project_name,\n" +
-                "projects.project_user_id\n" +
-                "from tasks\n" +
-                "inner join states_tasks on states_tasks.state_id = task_state_id\n" +
-                "inner join priority_tasks on priority_tasks.priority_id = task_priority_id\n" +
-                "inner join projects on projects.project_id = task_project_id";
+        String str = "SELECT * FROM tasks_view WHERE project_id = '" +obj.getProject_id() +"' AND project_user_id = '"+obj.getProject_user_id() +"'";
         return  resultSet = connection.getResultSet(str);
     }
 
     @Override
     public void insertTask(Task obj) {
-
+        String str = "INSERT INTO tasks(TASK_NAME,TASK_NOTE,TASK_STATE_ID,TASK_PRIORITY_ID,TASK_PROJECT_ID) VALUES ('"+ obj.getTask_name() +"','" + obj.getTask_note() +"','" +obj.getState_id()+"','"+obj.getPriority_id()+"','"+obj.getProject_id()+"')";
+        connection.execute(str);
     }
 
     @Override
     public void updateTask(Task obj) {
-
+        String str = "UPDATE tasks SET TASK_NAME = '"+ obj.getTask_name()+"', TASK_NOTE = '" + obj.getTask_note() + "', TASK_STATE_ID = '"+ obj.getState_id() +"', TASK_PRIORITY_ID = '"+ obj.getPriority_id() +"' WHERE TASK_ID = "+ obj.getTask_id();
+        connection.execute(str);
     }
 
     @Override
     public void deleteTask(Task obj) {
-
+        String str = "DELETE FROM tasks WHERE TASK_ID ="+ obj.getTask_id();
+        connection.execute(str);
     }
 }

@@ -1,21 +1,6 @@
---test view with math function
-CREATE VIEW projects AS SELECT
-PROJECT_DATE_CREATION,
-PROJECT_TIME_CREATION,
-PROJECT_TERM_DELIVERY,
-PROJECT_COST_DELIVERY,
-PROJECT_NAME,
-PROJECT_DESCRIPTION,
-PROJECT_COST_DELIVERY * currencies.CURRENCY_EXCHANGE_RATE AS BYN
-FROM projects 
-INNER JOIN currencies ON currencies.CURRENCY_ID = projects.PROJECT_CURRENCY_ID 
-GROUP BY PROJECT_DATE_CREATION, PROJECT_TIME_CREATION,PROJECT_TERM_DELIVERY,PROJECT_COST_DELIVERY,PROJECT_NAME,PROJECT_DESCRIPTION,currencies.CURRENCY_EXCHANGE_RATE;
- ------------------------
-  
- DROP VIEW IF EXISTS projects_view
-  
+
+  --POJECTS VIEW
  CREATE VIEW projects_view AS SELECT 
-tasks.task_name,
 projects.project_id,
 projects.project_date_creation,
 projects.project_time_creation,
@@ -25,61 +10,88 @@ projects.project_name,
 projects.project_description,
 currencies.currency_exchange_rate,
 currencies.currency_name,
-projects.project_user_id,
-(SELECT CAST((SELECT COUNT(*) FROM tasks WHERE task_state_id = 5) AS DEC(12,4) ) / (SELECT COUNT(*) FROM tasks) * 100 AS "finish_proceed")
-FROM tasks 
-INNER JOIN projects ON projects.project_id = tasks.task_project_id 
-INNER JOIN currencies ON currencies.currency_id = projects.project_currency_id 
---WHERE projects.project_user_id = 2
-GROUP BY projects.project_id,
-projects.project_date_creation,
-projects.project_time_creation,
-projects.project_term_delivery,
-projects.project_cost_delivery,
+projects.project_user_id
+FROM projects 
+INNER JOIN currencies ON currencies.currency_id = projects.project_currency_id ;
+
+
+--RISKS VIEW
+CREATE VIEW risks_view AS SELECT
+risk_id,
+risk_name,
+risk_loss_income,
+risk_loss_time_inday,
 projects.project_name,
-projects.project_description,
-projects.project_currency_id,
-projects.project_user_id,
-currencies.currency_exchange_rate,
-currencies.currency_name,
-tasks.task_name
-
-
-
-
-
-
-CREATE VIEW risks AS SELECT
-RISK_LOSS_INCOME,
-RISK_LOSS_TIME_INDAY,
-RISK_NAME,
-RISK_AVAILABILITY_ID
+availability_risk.availability_name,
+availability_risk.availability_id,
+projects.project_id,
+projects.project_user_id
 FROM risks
+INNER JOIN availability_risk ON availability_risk.availability_id = risk_availability_id
+INNER JOIN projects ON projects.project_id = risk_project_id;
 
-CREATE VIEW tasks AS SELECT
-TASK_NAME,
-TASK_NOTE,
-TASK_STATE_ID,
-TASK_PRIORITY_ID
+---TASKS VIEW
+CREATE VIEW tasks_view AS SELECT task_id,
+task_name,
+task_note,
+states_tasks.state_name,
+priority_tasks.prioroty_name,
+projects.project_name,
+states_tasks.state_id,
+priority_tasks.priority_id,
+projects.project_user_id,
+projects.project_id
 FROM tasks
-
-CREATE VIEW users AS SELECT
-USER_NAME,
-USER_SURNAME,
-USER_PATRONYMIC,
-USER_PASSWORD,
-USER_IMG,
-USER_PHONE,
-USER_EMAIL
-FROM users
+INNER JOIN states_tasks ON states_tasks.state_id = task_state_id
+INNER JOIN priority_tasks ON priority_tasks.priority_id = task_priority_id
+INNER JOIN projects ON projects.project_id = task_project_id;
 
 
+CREATE VIEW activity_log_view AS SELECT
+log_time,
+log_date,
+log_user_ip,
+users.user_email,
+users.user_nickname,
+roles.role_name
+FROM activity
+INNER JOIN users ON users.user_id = activity.log_user_id
+INNER JOIN roles ON roles.role_id = users.user_role_id;
+
+
+
+
+
+SELECT * FROM projects_view WHERE project_user_id = 2
+SELECT * FROM risks_view WHERE project_id = '1' AND project_user_id = '2'
+SELECT * FROM tasks_view WHERE project_user_id = 2 AND project_id = 1
+SELECT * FROM activity_log_view WHERE user_nickname = 'aicgtrade'
 
 
 
 
 
 
+
+
+
+---TASKS VIEW на проверку
+CREATE VIEW tasks_view AS SELECT task_id,
+task_name,
+task_note,
+states_tasks.state_name,
+priority_tasks.prioroty_name,
+projects.project_name,
+states_tasks.state_id,
+priority_tasks.priority_id,
+projects.project_user_id,
+projects.project_id
+FROM tasks
+INNER JOIN states_tasks ON states_tasks.state_id = task_state_id
+INNER JOIN priority_tasks ON priority_tasks.priority_id = task_priority_id
+INNER JOIN projects ON projects.project_id = task_project_id
+
+-- SELECT * FROM tasks_view WHERE project_user_id = 2 AND project_id = 1
 
 
 

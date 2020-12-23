@@ -1,5 +1,6 @@
 package database;
 
+import database.projects.SQLActivity;
 import database.projects.SQLProject;
 import database.risks.SQLRisk;
 import database.tasks.SQLTask;
@@ -10,4 +11,5 @@ public abstract class AbstractFactory {
     public abstract SQLProject getProject();
     public abstract SQLTask getTask();
     public abstract SQLRisk getRisk();
+    public abstract SQLActivity getActivity();
 }

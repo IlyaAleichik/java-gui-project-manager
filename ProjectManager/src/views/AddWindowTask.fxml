@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -19,7 +20,7 @@
                <children>
                   <HBox alignment="CENTER_LEFT" VBox.vgrow="ALWAYS">
                      <children>
-                        <Label text="Оценка рисков " wrapText="true" HBox.hgrow="ALWAYS">
+                        <Label text="Новая задача" wrapText="true" HBox.hgrow="ALWAYS">
                            <font>
                               <Font name="Arial Bold" size="27.0" />
                            </font>
@@ -31,81 +32,73 @@
                   </HBox>
                   <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
                      <children>
-                        <Label prefHeight="47.0" prefWidth="250.0" text="Наименование риска" wrapText="true">
+                        <Label prefHeight="47.0" prefWidth="250.0" text="Название задачи" wrapText="true">
                            <font>
                               <Font name="Arial" size="15.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="textFieldNameRisk" prefHeight="34.0" prefWidth="260.0" promptText="Описание риска или наименование" style="-fx-background-radius: 0.3em;" styleClass="text-input">
+                        <TextField fx:id="textFieldNameTask" prefHeight="34.0" prefWidth="260.0" promptText="Описание риска или наименование" style="-fx-background-radius: 0.3em;" styleClass="text-input">
                            <padding>
                               <Insets left="15.0" />
                            </padding>
                         </TextField>
                      </children>
-                  </HBox>
-                  <HBox alignment="CENTER">
-                     <children>
-                        <Label prefHeight="47.0" prefWidth="250.0" text="Потери дохода" wrapText="true">
-                           <font>
-                              <Font name="Arial" size="15.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="textFieldLossIncomeRisk" prefHeight="34.0" prefWidth="260.0" promptText="100000$" style="-fx-background-radius: 0.3em;" styleClass="text-input">
-                           <padding>
-                              <Insets left="15.0" />
-                           </padding>
-                        </TextField>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER">
-                     <children>
-                        <Label prefHeight="47.0" prefWidth="250.0" text="Потери дни" wrapText="true">
-                           <font>
-                              <Font name="Arial" size="15.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="textFieldLossIndayRisk" prefHeight="34.0" prefWidth="260.0" promptText="30 дней" style="-fx-background-radius: 0.3em;" styleClass="text-input">
-                           <padding>
-                              <Insets left="15.0" />
-                           </padding>
-                        </TextField>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER">
-                     <children>
-                        <Label prefHeight="47.0" prefWidth="250.0" text="Вероятность риска" wrapText="true">
-                           <font>
-                              <Font name="Arial" size="15.0" />
-                           </font>
-                        </Label>
-                        <ComboBox fx:id="coboBoxAvailabilityRisk" prefHeight="34.0" prefWidth="260.0" promptText="Есть" />
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" />
-                  <HBox alignment="CENTER" />
-                  <HBox alignment="CENTER" />
-                  <HBox alignment="CENTER" />
-                  <HBox alignment="CENTER" />
-                  <HBox alignment="CENTER" />
-                  <HBox alignment="CENTER">
                      <VBox.margin>
-                        <Insets bottom="50.0" />
+                        <Insets bottom="20.0" />
                      </VBox.margin>
                   </HBox>
+                  <HBox alignment="CENTER_LEFT" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Label prefHeight="47.0" prefWidth="250.0" text="Описание задачи" wrapText="true">
+                           <font>
+                              <Font name="Arial" size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER">
+                     <children>
+                        <TextArea fx:id="textFieldTaskNote" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER">
+                     <children>
+                        <Label prefHeight="47.0" prefWidth="250.0" text="Состояние " wrapText="true">
+                           <font>
+                              <Font name="Arial" size="15.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="coboBoxStateTask" prefHeight="34.0" prefWidth="260.0" promptText="Инициирование" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER">
+                     <children>
+                        <Label prefHeight="47.0" prefWidth="250.0" text="Укажите приоритет задачи" wrapText="true">
+                           <font>
+                              <Font name="Arial" size="15.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="coboBoxPriorityTask" prefHeight="34.0" prefWidth="260.0" promptText="Низкий" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" />
                   <HBox alignment="CENTER_RIGHT" VBox.vgrow="ALWAYS">
                      <children>
-                        <Button fx:id="buttonCleanRisk" mnemonicParsing="false" onMouseClicked="#cleanAddRisk" prefHeight="34.0" prefWidth="133.0" text="Очистить">
+                        <Button fx:id="buttonCleanTask" mnemonicParsing="false" onMouseClicked="#cleanAddTask" prefHeight="34.0" prefWidth="133.0" text="Очистить">
                            <HBox.margin>
                               <Insets right="20.0" />
                            </HBox.margin>
                         </Button>
-                        <Button fx:id="buttonAboutRisk" mnemonicParsing="false" onMouseClicked="#aboutAddRisk" prefHeight="34.0" prefWidth="133.0" text="Отмена">
+                        <Button fx:id="buttonAboutTask" mnemonicParsing="false" onMouseClicked="#aboutAddTask" prefHeight="34.0" prefWidth="133.0" text="Отмена">
                            <HBox.margin>
                               <Insets right="20.0" />
                            </HBox.margin>
                         </Button>
-                        <Button fx:id="buttonAceptRisk" mnemonicParsing="false" onMouseClicked="#acceptAddRisk" prefHeight="34.0" prefWidth="133.0" text="Применить" />
+                        <Button fx:id="buttonAceptTask" mnemonicParsing="false" onMouseClicked="#acceptAddTask" prefHeight="34.0" prefWidth="133.0" text="Применить" />
                      </children>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
                   </HBox>
                </children>
                <BorderPane.margin>

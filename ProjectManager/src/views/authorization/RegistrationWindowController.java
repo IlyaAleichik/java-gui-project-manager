@@ -1,3 +1,6 @@
+
+
+
 package views.authorization;
 
 import java.net.URL;
@@ -13,12 +16,6 @@ import models.User;
 
 
 public class RegistrationWindowController {
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
 
     @FXML
     private TextField textFieldUsername;
@@ -47,6 +44,7 @@ public class RegistrationWindowController {
     @FXML
     private CheckBox checkBoxAcceptPrivacy;
 
+
     @FXML
     void initialize() {
         String typeError = "Input error";
@@ -55,8 +53,8 @@ public class RegistrationWindowController {
         checkBoxAcceptPrivacy.setOnAction(event -> chekSelected());
 
         buttonSignUp.setOnAction(event -> {
-            if (textFieldUsername.getText().isEmpty() ||textFieldName.getText().isEmpty() || textFieldSurname.getText().isEmpty() || textFieldPatronymic.getText().isEmpty() || textFieldPassword.getText().isEmpty() || textFieldEmail.getText().isEmpty() || textFieldPhone.getText().isEmpty()) {
-                dialogAlert(typeError, "Not input Username");
+            if (textFieldUsername.getText().equals("") ||textFieldName.getText().equals("")|| textFieldSurname.getText().equals("")|| textFieldPatronymic.getText().equals("") || textFieldPassword.getText().equals("") || textFieldEmail.getText().equals("") || textFieldPhone.getText().equals("")) {
+                dialogAlert(typeError, "Ошибка ввода. Возможно вы ввели не все данные");
             } else {
                 User user = new User(textFieldName.getText(),textFieldSurname.getText(),textFieldPatronymic.getText(),textFieldPassword.getText(),textFieldPhone.getText(),textFieldEmail.getText(),textFieldUsername.getText());
                 connection.getUsers().insertUser(user);
